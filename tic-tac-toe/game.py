@@ -86,16 +86,25 @@ def play(game, x_player, o_player, print_game=True):
 
       letter = 'O' if letter == 'X' else 'X'
     
-    time.sleep(.8)
-
-  if print_game:
-    print("It's a tie!")
+    # if print_game:
+    #   time.sleep(.8)
 
 if __name__ == '__main__':
   # x_player = HumanPlayer('X')
-  x_player = SmartComputerPlayer('X')
   # o_player = RandomComputerPlayer('O')
-  # o_player = SmartComputerPlayer('O')
-  o_player = HumanPlayer('O')
-  t = TicTacToe()
-  play(t, x_player, o_player, print_game=True)
+  # o_player = HumanPlayer('O')
+  i = 0
+  scores = {'X': 0, 'O': 0, 'tie': 0}
+  for _ in range(100):
+    x_player = SmartComputerPlayer('X')
+    o_player = SmartComputerPlayer('O')
+    t = TicTacToe()
+    result = play(t, x_player, o_player, print_game=True)
+    if result == 'X':
+      scores['X'] += 1
+    elif result == 'O':
+      scores['O'] += 1
+    else:
+      scores['tie'] += 1
+    i += 1
+  print(f"X wins {scores['X']} times \nO wins {scores['O']} times \ntie {scores['tie']} times")  
